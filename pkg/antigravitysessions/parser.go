@@ -35,18 +35,20 @@ type workspaceIndex struct {
 	history        []historyEntry
 }
 
-// DefaultRoots returns canonical Antigravity data directories (CLI and IDE).
+// DefaultRoots returns canonical Antigravity data directories (CLI, IDE, and Desktop 2.0).
 func DefaultRoots() []string {
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return []string{
 			filepath.Join(".gemini", "antigravity-cli"),
 			filepath.Join(".gemini", "antigravity-ide"),
+			filepath.Join(".gemini", "antigravity"),
 		}
 	}
 	return []string{
 		filepath.Join(home, ".gemini", "antigravity-cli"),
 		filepath.Join(home, ".gemini", "antigravity-ide"),
+		filepath.Join(home, ".gemini", "antigravity"),
 	}
 }
 

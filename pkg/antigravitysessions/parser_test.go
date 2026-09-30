@@ -68,13 +68,16 @@ func TestWorkspaceIndexFallsBackToHistory(t *testing.T) {
 
 func TestDefaultRoots(t *testing.T) {
 	roots := DefaultRoots()
-	if len(roots) != 2 {
-		t.Fatalf("DefaultRoots() len = %d, want 2", len(roots))
+	if len(roots) != 3 {
+		t.Fatalf("DefaultRoots() len = %d, want 3", len(roots))
 	}
 	if filepath.Base(roots[0]) != "antigravity-cli" {
 		t.Errorf("roots[0] base = %q, want 'antigravity-cli'", filepath.Base(roots[0]))
 	}
 	if filepath.Base(roots[1]) != "antigravity-ide" {
 		t.Errorf("roots[1] base = %q, want 'antigravity-ide'", filepath.Base(roots[1]))
+	}
+	if filepath.Base(roots[2]) != "antigravity" {
+		t.Errorf("roots[2] base = %q, want 'antigravity'", filepath.Base(roots[2]))
 	}
 }
