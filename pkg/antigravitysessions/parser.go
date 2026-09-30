@@ -35,13 +35,24 @@ type workspaceIndex struct {
 	history        []historyEntry
 }
 
-// DefaultRoot returns Antigravity CLI's local application data directory.
-func DefaultRoot() string {
+// DefaultRoots returns canonical Antigravity data directories (CLI and IDE).
+func DefaultRoots() []string {
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return filepath.Join(".gemini", "antigravity-cli")
+		return []string{
+			filepath.Join(".gemini", "antigravity-cli"),
+			filepath.Join(".gemini", "antigravity-ide"),
+		}
 	}
-	return filepath.Join(home, ".gemini", "antigravity-cli")
+	return []string{
+		filepath.Join(home, ".gemini", "antigravity-cli"),
+		filepath.Join(home, ".gemini", "antigravity-ide"),
+	}
+}
+
+// DefaultRoot returns Antigravity CLI's local application data directory.
+func DefaultRoot() string {
+	return DefaultRoots()[0]
 }
 
 // ParseAll imports canonical, user-visible Antigravity CLI transcripts. The
