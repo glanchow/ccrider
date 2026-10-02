@@ -124,13 +124,13 @@ func DefaultSources(ampEnabled bool) []Source {
 	}
 
 	for _, antigravityRoot := range antigravitysessions.DefaultRoots() {
-		if _, err := os.Stat(filepath.Join(antigravityRoot, "brain")); err == nil {
+		if _, err := os.Stat(filepath.Join(antigravityRoot.Path, "brain")); err == nil {
 			root := antigravityRoot
 			sources = append(sources, Source{
-				Path:     root,
-				Provider: antigravitysessions.Provider,
+				Path:     root.Path,
+				Provider: root.Provider,
 				EnumerateFn: func() ([]*ccsessions.ParsedSession, error) {
-					return antigravitysessions.ParseAll(root)
+					return antigravitysessions.ParseAll(root.Path)
 				},
 			})
 		}
